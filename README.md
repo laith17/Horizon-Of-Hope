@@ -1,4 +1,4 @@
-# The-horizon-of-goodness
+# Horizon-Of-Hope
 
 ## Project Overview
 This project is a charity website designed for backend developers, utilizing MongoDB as the database. The website incorporates Google login for user authentication, Multer and Firebase for seamless image uploads, and JWT for secure dashboard access. Stripe integration facilitates easy and secure online payments.
