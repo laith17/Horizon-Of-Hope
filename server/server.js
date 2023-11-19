@@ -6,22 +6,26 @@ require("dotenv").config();
 const app = express();
 app.use(cors());
 
-const Parser = require('body-parser');
-app.use(Parser.urlencoded({ extended: true }));
-
 app.use(express.json());
-const Parser = require('body-parser');
-app.use(Parser.urlencoded({ extended: true }));
 app.use(cookieParser());
-const stripe = require('stripe')("sk_test_51OCizILLmtJgsGjhKcKg5Lk0FoXKwJJbs9xIeYxPH07CWN8jB8DGeDij7QvAnGZm0k0B9SlOlEU0EtsYydAPnvDH002qVZo6ac");
+
+const stripe = require("stripe")(
+  "sk_test_51OCizILLmtJgsGjhKcKg5Lk0FoXKwJJbs9xIeYxPH07CWN8jB8DGeDij7QvAnGZm0k0B9SlOlEU0EtsYydAPnvDH002qVZo6ac"
+);
 const PORT = 8080;
-const Parser = require('body-parser');
+const Parser = require("body-parser");
 app.use(Parser.urlencoded({ extended: true }));
 
-const passport = require('passport');
-const session = require('express-session');
+const passport = require("passport");
+const session = require("express-session");
 
-app.use(session({ secret: process.env.SECRET_KEY, resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -36,16 +40,19 @@ app.use(passport.session());
 
 // Import your payment routes
 
-const paymentRoutes = require('./Routes/paymentRoutes');
-app.use('/api',  paymentRoutes);
+const paymentRoutes = require("./Routes/paymentRoutes");
+app.use("/api", paymentRoutes);
 
-const userLog = require('./Routes/authonticationRoutes');
-const feddbackRewsponse = require('./Routes/feedbackResponseRoutes');
+const userLog = require("./Routes/authonticationRoutes");
+const feddbackRewsponse = require("./Routes/feedbackResponseRoutes");
 app.use(userLog);
 app.use(feddbackRewsponse);
 
-mongoose.connect(`mongodb+srv://${process.env.Mongo_USER}:${process.env.MONGO_PASSWORD}@cluster0.w4eb3k0.mongodb.net/charity?retryWrites=true&w=majority`)
-.then(() => {
+mongoose
+  .connect(
+    `mongodb+srv://${process.env.Mongo_USER}:${process.env.MONGO_PASSWORD}@cluster0.w4eb3k0.mongodb.net/charity?retryWrites=true&w=majority`
+  )
+  .then(() => {
     console.log("connect successfully");
   })
   .catch((error) => {
@@ -60,9 +67,8 @@ app.use(itemDonationsRoute);
 
 app.listen(PORT, console.log(`server is running in ${PORT}`));
 
-const beneficiariesRoute = require('./Routes/beneficiariesRoute');
+const beneficiariesRoute = require("./Routes/beneficiariesRoute");
 const bodyParser = require("body-parser");
-app.use(beneficiariesRoute)
+app.use(beneficiariesRoute);
 
 module.exports = app;
-
